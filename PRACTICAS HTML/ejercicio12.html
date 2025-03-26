@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Popovers de Harry Potter</title>
+    <style>
+        button {
+            background-color: #f0e68c; /* Dorado claro */
+            border: 1px solid #d2b48c; /* Bronceado */
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+
+        .popover {
+            position: absolute;
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 10px;
+            display: none; /* Oculto inicialmente */
+        }
+    </style>
+</head>
+<body>
+    <h1>Personajes de Harry Potter</h1>
+
+    <button data-personaje="harry">Harry Potter</button>
+    <div class="popover" id="harry-popover">
+        <p>Harry Potter es el protagonista de la saga. Es conocido como "El Niño Que Vivió".</p>
+    </div>
+
+    <button data-personaje="hermione">Hermione Granger</button>
+    <div class="popover" id="hermione-popover">
+        <p>Hermione Granger es la mejor amiga de Harry. Es una bruja muy inteligente y estudiosa.</p>
+    </div>
+
+    <button data-personaje="ron">Ron Weasley</button>
+    <div class="popover" id="ron-popover">
+        <p>Ron Weasley es el mejor amigo de Harry. Es leal y valiente.</p>
+    </div>
+
+    <script>
+        const botones = document.querySelectorAll('button');
+        botones.forEach(boton => {
+            boton.addEventListener('click', () => {
+                const personaje = boton.dataset.personaje;
+                const popover = document.getElementById(`${personaje}-popover`);
+                popover.style.display = 'block'; // Muestra el popover
+            });
+        });
+
+        // Ocultar popovers al hacer clic fuera de ellos
+        document.addEventListener('click', (event) => {
+            if (!event.target.matches('button')) {
+                const popovers = document.querySelectorAll('.popover');
+                popovers.forEach(popover => {
+                    popover.style.display = 'none'; // Oculta todos los popovers
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+<a href="index.html">Volver a pagina Principal</a>
